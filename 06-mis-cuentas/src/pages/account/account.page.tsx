@@ -13,14 +13,12 @@ export const AccountPage: React.FC = () => {
   const [newAccount, setNewAccount] = React.useState<NewAccount>(createEmptyNewAccount());
   const navigate = useNavigate();
 
-  // React.useEffect(() => {
-  //   saveAccount().then((result) => setNewAccount(mapNewAccountFromApiToVm(result)))
-  // }, [])
-
     const handleNewAccount = (createNewAccount: NewAccount) => {
       const newAccount = mapNewAccountFromVmToApi(createNewAccount);
+
       saveAccount(newAccount).then((result) => {
         if (result) {
+          setNewAccount(mapNewAccountFromVmToApi(result));
           alert ("Nueva cuenta creada con éxito");
           navigate(appRoutes.accountList)
         } else {
