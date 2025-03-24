@@ -1,5 +1,5 @@
 import React from "react";
-import { AccountVm, createEmptyNewAccount, createEmptyNewAccountError, NewAccount, NewAccountError } from "../account.vm";
+import { createEmptyNewAccount, createEmptyNewAccountError, NewAccount, NewAccountError } from "../account.vm";
 import { validateForm } from "../validations/account-form.validation";
 import classes from "./account-form.component.module.css";
 
@@ -10,7 +10,7 @@ export const ACCOUNT_SAVINGS = "2";
 export const ACCOUNT_PAYROLL = "3";
 
 interface Props {
-  newAccount: AccountVm[];
+  newAccount: NewAccount;
   onCreateNewAccount: (createNewAccount: NewAccount) => void;
 }
 
@@ -47,7 +47,7 @@ export const NewAccountComponent: React.FC<Props> = (props) => {
             <select
                 name="type"
                 onChange={handleFieldChange}
-                // value={newAccount.id}
+                value={newAccount.type}
                 className={classes.accountSelect}
               >
               <option value={ACCOUNT_NONE}>Seleccionar</option>

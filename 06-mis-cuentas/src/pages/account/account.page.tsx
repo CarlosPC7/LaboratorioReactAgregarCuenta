@@ -3,21 +3,30 @@ import React from "react";
 import classes from "./account.page.module.css"
 import {NewAccountComponent} from '@/pages/account/components/account-form.component';
 import { NewAccount } from "./account.vm";
-import {AccountVm} from '@/pages/account/account.vm';
 import { saveAccount } from "./api";
-import { mapNewAccountFromApiToVm } from "./account.mapper";
+import { mapNewAccountFromVmToApi } from "./account.mapper";
+import {createEmptyNewAccount} from '@/pages/account/account.vm';
+import { appRoutes } from "@/core/router";
+import { useNavigate } from "react-router-dom";
 
 export const AccountPage: React.FC = () => {
-  const [newAccount, setNewAccount] = React.useState<AccountVm[]>([]);
+  const [newAccount, setNewAccount] = React.useState<NewAccount>(createEmptyNewAccount());
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
-    saveAccount().then((result) => {
-    const NewAccountVm = result.map(mapNewAccountFromApiToVm);
-    setNewAccount(NewAccountVm)});
-  }, [])
+  // React.useEffect(() => {
+  //   saveAccount().then((result) => setNewAccount(mapNewAccountFromApiToVm(result)))
+  // }, [])
 
     const handleNewAccount = (createNewAccount: NewAccount) => {
-      console.log(createNewAccount);
+      const newAccount = mapNewAccountFromVmToApi(createNewAccount);
+      saveAccount(newAccount).then((result) => {
+        if (result) {
+          alert ("Nueva cuenta creada con éxito");
+          navigate(appRoutes.accountList)
+        } else {
+          alert ("Error al crear nueva cuenta")
+        }
+      })
     }
 
   return (

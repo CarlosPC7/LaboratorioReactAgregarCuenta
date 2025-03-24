@@ -41,7 +41,7 @@ describe("plain.validation", () => {
 
     it("should return true when the selected value is account current", () => {
       // Arrange
-      const selectedValue = ACCOUNT_CURRENT; // Puede ser cualquier cuenta válida
+      const selectedValue = ACCOUNT_CURRENT;
 
       // Act
       const result = isSelectValueValid(selectedValue);
@@ -52,7 +52,7 @@ describe("plain.validation", () => {
 
     it("should return true when the selected value is account savings", () => {
       // Arrange
-      const selectedValue = ACCOUNT_SAVINGS; // Puede ser cualquier cuenta válida
+      const selectedValue = ACCOUNT_SAVINGS;
 
       // Act
       const result = isSelectValueValid(selectedValue);
@@ -63,7 +63,7 @@ describe("plain.validation", () => {
 
     it("should return true when the selected value is account payroll", () => {
       // Arrange
-      const selectedValue = ACCOUNT_PAYROLL; // Puede ser cualquier cuenta válida
+      const selectedValue = ACCOUNT_PAYROLL;
 
       // Act
       const result = isSelectValueValid(selectedValue);
